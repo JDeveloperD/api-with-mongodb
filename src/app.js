@@ -1,3 +1,6 @@
+require('dotenv').config();
+require('./database/conn');
+
 const express = require('express');
 const morgan = require('morgan');
 
