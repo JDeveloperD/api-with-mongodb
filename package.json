@@ -1,0 +1,27 @@
+{
+  "name": "api-with-mongodb",
+  "version": "1.0.0",
+  "description": "Api de prueba para gentión de contratos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JDeveloperD/api-with-mongodb.git"
+  },
+  "keywords": [],
+  "author": "David Sandoval",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JDeveloperD/api-with-mongodb/issues"
+  },
+  "homepage": "https://github.com/JDeveloperD/api-with-mongodb#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
