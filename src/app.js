@@ -1,20 +1,20 @@
 require('dotenv').config();
 require('./database/Connection');
-require('./controllers/Controllers');
-
 const express = require('express');
 const morgan = require('morgan');
-// const EmployeeController = require('./controllers/EmployeeController');
+const bodyParser = require('body-parser');
 
+const port = process.env.PORT_API;
 const app = express();
 
-// settings
-app.set('port', 5000);
-app.use(require('./routes/index'));
+app.use(bodyParser.json());
+
+// routes
 app.use('/api/empleados', require('./routes/employee'));
+app.use('/api/contratos', require('./routes/contract'));
+app.use('/api/afp', require('./routes/afp'));
 
 // starting the server
-app.listen(app.get('port'), () => {
-    console.log(`Server runing on port ${app.get('port')}`);
+app.listen(port, () => {
+    console.log(`Server runing on port ${port}`);
 });
-

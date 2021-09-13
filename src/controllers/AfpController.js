@@ -1,23 +1,24 @@
-const { Employee } = require('../models/Employee');
+const { Afp } = require('../models/Afp');
 
 module.exports = {
     getAll: async (req, res) => {
-        const employees = await Employee.find();
 
+        const afps = await Afp.find();
+    
         res.json({
-            message: "todos los empleados",
-            data: employees
+            message: "todos los afps",
+            data: afps
         });
     },
 
     create: async (req, res) => {
         try {
             const data = req.body;
-            await Employee.create(data);
+            await Afp.create(data);
     
             res.status(201)
                 .json({
-                message: "empleado creado",
+                message: "Afp creado",
                 data: data
             });
         } catch (e) {
@@ -26,5 +27,5 @@ module.exports = {
                 data: e.message
             });
         }
-    } 
+    }
 }
