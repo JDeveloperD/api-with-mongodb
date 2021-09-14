@@ -9,12 +9,19 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// routes
+// rutas
 app.use('/api/empleados', require('./routes/employee'));
 app.use('/api/contratos', require('./routes/contract'));
 app.use('/api/afp', require('./routes/afp'));
 
-// starting the server
+app.use((err, req, res, next) => {
+    res.status(400).json({
+        status: "error",
+        message: err.message
+    });
+});
+
+// inciiando servidor
 app.listen(port, () => {
     console.log(`Server runing on port ${port}`);
 });

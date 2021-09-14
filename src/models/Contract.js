@@ -11,14 +11,18 @@ const ContractSchema = new Schema({
     hourlyValue: Schema.Types.Decimal128,
     state: Boolean,
     _employeeId: { type: Schema.Types.ObjectId, ref: 'Employee' },
+    delete: {
+        type: Boolean,
+        default: false,
+    }
 }, {timestamps: true});
 
-// ContractSchema.virtual('employee', {
-//     ref: 'Employee',
-//     localField: 'employeeId',
-//     foreignField: '_id',
-//     justOne: true,
-// });
+ContractSchema.virtual('employee', {
+    ref: 'Employee',
+    localField: 'employeeId',
+    foreignField: '_id',
+    justOne: true,
+});
 
 module.exports = {
     Contract: model('Contract', ContractSchema)

@@ -19,6 +19,10 @@ const EmployeeSchema = new Schema({
     academicDegree: {
         type: String,
         required: true
+    },
+    delete: {
+        type: Boolean,
+        default: false,
     }
 }, {timestamps: true});
 
