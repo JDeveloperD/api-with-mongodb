@@ -7,17 +7,17 @@ moment.locale('es');
  * Un contrato está vigente si su fecha fin es mayor o igual a la fecha actual y no está anulado.
  * 
  * @param {Date} endDate
- * @param {Boolean} state
+ * @param {Boolean} status
  * 
  * @return Boolean
  */
-function checkIfThereIsAValidContract(endDate, state) {
+function checkIfThereIsAValidContract(endDate, status) {
     // validamos si los datos recibidos son fechas
     if (!(endDate instanceof Date)) {
         throw TypeError('La fecha final debe ser objeto de tipo fecha');
     }
 
-    return calculateDateDifferences(Date.now(), endDate, 'days') >= 0 && state == true;
+    return calculateDateDifferences(Date.now(), endDate, 'days') >= 0 && status == "vigente";
 }
 
 /**
@@ -94,7 +94,7 @@ function validateHourValueByAcademicGrade(academicDegree, hourlyValue) {
 
     // verificamos que el grado académico esté bien escrito        
     if (!gradosAcademicos.includes(academicDegree)) {
-        throw TypeError('El grado académico esta erroneo');
+        throw Error('El grado académico esta erroneo');
     }
 
     // validamos el valor por hora dependiendo del grado académico

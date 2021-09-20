@@ -14,16 +14,14 @@ const EmployeeSchema = new Schema({
     dateBirth: Date,
     maritalStatus: {
         type: String,
-        required: true
+        required: true,
+        default: "soltero"
     },
     academicDegree: {
         type: String,
         required: true
     },
-    delete: {
-        type: Boolean,
-        default: false,
-    }
+    avatar: String
 }, {timestamps: true});
 
 module.exports = {

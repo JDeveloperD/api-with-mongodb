@@ -22,7 +22,8 @@ module.exports = {
                 data: data
             });
         } catch (e) {
-            res.json({
+            res.status(500)
+                .json({
                 message: "error interno",
                 data: e.message
             });

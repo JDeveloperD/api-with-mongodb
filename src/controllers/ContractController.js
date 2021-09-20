@@ -10,14 +10,51 @@ module.exports = {
         
             res.status(200)
                 .json({
-                    message: 'Todos los contratos',
+                    message: 'Lista de contratos',
                     data: contracts
-                })
+                });
         } catch (e) {
             res.status(400)
                 .json({
                     message: 'Internal error',
                     data: e.message
+                });
+        }
+    },
+
+    lastContractByEmployeeId: async (req, res) => {
+        try {
+            const employeeId = req.params.id;
+            const lastContract = await Contract.find({_employeeId : employeeId});
+            
+            res.status(200)
+                .json({
+                    info: {},
+                    result: lastContract[lastContract.length - 1]
+                })
+        } catch (e) {
+            res.status(500)
+                .json({
+                    message: e.message,
+                })
+        }
+    },
+
+    getById: async (req, res) => {
+        try {
+            const id = req.params.id;
+            const contract = await Contract.findById(id);
+
+            res.status(200)
+                .json({
+                    info: {},
+                    result: contract
+                })
+
+        } catch (e) {
+            res.status(500)
+                .json({
+                    message: e.message,
                 })
         }
     },
@@ -53,10 +90,10 @@ module.exports = {
             // validaciones del contrato
             if (lastContract.length > 0) {
                 let dateEndLastContract = new Date(lastContract[lastContract.length - 1].endDate);
-                let stateLastContract = lastContract[lastContract.length - 1].state;
+                let statusLastContract = lastContract[lastContract.length - 1].status;
 
                 // Regla 1
-                if (contractService.checkIfThereIsAValidContract(dateEndLastContract, stateLastContract)) {
+                if (contractService.checkIfThereIsAValidContract(dateEndLastContract, statusLastContract)) {
                     throw Error("El empleado tiene un contrato vigente");
                 }
 
@@ -95,8 +132,8 @@ module.exports = {
         } catch (e) {
             res.status(400)
                 .json({
-                    message: 'Internal error',
-                    data: e.message
+                    status: "Error del cliente",
+                    message: e.message
                 })
         }
     }

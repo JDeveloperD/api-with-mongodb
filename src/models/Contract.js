@@ -5,16 +5,16 @@ const uniqueValidatio = require('mongoose-unique-validator');
 const ContractSchema = new Schema({
     startDate: Date,
     endDate: Date,
-    _afpId: { type: Schema.Types.ObjectId, ref: 'Afp' },
     householdAllowance: Boolean,
     weeklyHours: Number,
     hourlyValue: Schema.Types.Decimal128,
-    state: Boolean,
-    _employeeId: { type: Schema.Types.ObjectId, ref: 'Employee' },
-    delete: {
-        type: Boolean,
-        default: false,
-    }
+    status: {
+        type: String,
+        default: "vigente"
+    },
+    _afpId: { type: Schema.Types.ObjectId, ref: 'Afp' },
+    position: String,
+    _employeeId: { type: Schema.Types.ObjectId, ref: 'Employee' }
 }, {timestamps: true});
 
 ContractSchema.virtual('employee', {
