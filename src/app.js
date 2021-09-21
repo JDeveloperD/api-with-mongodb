@@ -13,7 +13,6 @@ const app = express();
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
-
 // rutas
 app.use('/api/empleados', require('./routes/employee'));
 app.use('/api/contratos', require('./routes/contract'));
